@@ -76,18 +76,26 @@ function ProjectList() {
   const [items, setItems] = useState(arrItems);
   const [selected, setSelecter] = useState("All");
 
-  const handleClickSelected = (evt) => {
-    setSelecter(evt.target.textContent);
-    Array.from(evt.target.parentElement.children).forEach((item) =>
-      item.classList.remove("selected")
-    );
-    evt.target.classList.add("selected");
-  };
+  const selectCategory = (evt) => {
+    setSelecter((prevSelected) => (prevSelected = evt));
+    console.log({ selected });
 
-
-  const handleClickCategory = () => {
     setItems(arrItems.filter((o) => o.category !== selected));
   };
+
+  // const handleClickSelected = (evt) => {
+  //   setSelecter(evt.target.textContent);
+  //   Array.from(evt.target.parentElement.children).forEach((item) =>
+  //     item.classList.remove("selected")
+  //   );
+  //   evt.target.classList.add("selected");
+  //   setItems(arrItems.filter((o) => o.category !== selected))
+  //   console.log(items);
+  // };
+
+  // const handleClickCategory = () => {
+  //   setItems(arrItems.filter((o) => o.category !== selected));
+  // };
 
   return (
     <div>
@@ -97,11 +105,12 @@ function ProjectList() {
         onSelectFilter={(filter) => {
           console.log(filter);
         }}
-        handleClickSelected={handleClickSelected}
-        handleClickCategory={handleClickCategory}
+        selectCategory={selectCategory}
+        // handleClickSelected={handleClickSelected}
+        // handleClickCategory={handleClickCategory}
         items={items}
-      />
-      <Portfolio items={items} />
+      />{" "}
+      <Portfolio items={items} />{" "}
     </div>
   );
 }
