@@ -7,7 +7,7 @@ export default function Toolbar(props) {
     return props.selected === category ? "selected" : "";
   };
 
-  props.onSelectFilter(props.selected);
+  // props.onSelectFilter(props.selected);
   return (
     <ul className="toolbar">
       {filters.map((item) => (

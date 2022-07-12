@@ -78,36 +78,19 @@ function ProjectList() {
 
   const selectCategory = (evt) => {
     setSelecter((prevSelected) => (prevSelected = evt));
-    console.log({ selected });
-
-    setItems(arrItems.filter((o) => o.category !== selected));
+    if (evt === "All") {
+      setItems(arrItems);
+    } else {
+      setItems(arrItems.filter((o) => o.category === evt));
+    }
   };
-
-  // const handleClickSelected = (evt) => {
-  //   setSelecter(evt.target.textContent);
-  //   Array.from(evt.target.parentElement.children).forEach((item) =>
-  //     item.classList.remove("selected")
-  //   );
-  //   evt.target.classList.add("selected");
-  //   setItems(arrItems.filter((o) => o.category !== selected))
-  //   console.log(items);
-  // };
-
-  // const handleClickCategory = () => {
-  //   setItems(arrItems.filter((o) => o.category !== selected));
-  // };
 
   return (
     <div>
       <Toolbar
         filters={["All", "Websites", "Flayers", "Business Cards"]}
         selected={selected}
-        onSelectFilter={(filter) => {
-          console.log(filter);
-        }}
         selectCategory={selectCategory}
-        // handleClickSelected={handleClickSelected}
-        // handleClickCategory={handleClickCategory}
         items={items}
       />{" "}
       <Portfolio items={items} />{" "}
